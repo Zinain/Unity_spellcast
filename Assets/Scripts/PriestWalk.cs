@@ -7,8 +7,7 @@ public class PriestWalk : MonoBehaviour
 
     private InputAction move;
 
-    private Vector2 move_horizontal;
-    private Vector2 move_vertical;
+    private Vector2 move_vec;
     private Rigidbody2D rigidBody;
 
     [SerializeField] private float moveSpeed = 5;
@@ -38,7 +37,7 @@ public class PriestWalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move_horizontal = move.ReadValue<Vector2>();
+        move_vec = move.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
@@ -48,6 +47,6 @@ public class PriestWalk : MonoBehaviour
 
     private void Walking()
     {
-        rigidBody.MovePosition(rigidBody.position + move_horizontal * moveSpeed * Time.deltaTime);
+        rigidBody.MovePosition(rigidBody.position + move_vec * moveSpeed * Time.deltaTime);
     }
 }

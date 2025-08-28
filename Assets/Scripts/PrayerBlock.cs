@@ -8,5 +8,6 @@ public class PrayerBlock : ScriptableObject
 {
     public string blockName;
     public BlockEffect effect;
-
+    public float power;
+    public float radius;
 }
