@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class SpellUIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject spellPanel;
+    [SerializeField] private GameObject[] spellPanels;
+    private int currentPanel = 0;
     private bool isOpen = false;
     public InputActionAsset Input;
 
@@ -26,7 +27,40 @@ public class SpellUIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spellPanel.SetActive(false);
+        HideAllPanels();
+    }
+
+    public void HideAllPanels()
+    {
+        foreach (var p in spellPanels)
+        {
+            p.SetActive(false);
+        }
+    }
+
+    public void ShowPanel(int index)
+    {
+        HideAllPanels();
+        if(index >= 0 && index < spellPanels.Length)
+        {
+            spellPanels[index].SetActive(true);
+            currentPanel = index;
+        }
+    }
+
+    public void NextPanel()
+    {
+        int next = currentPanel++;
+        if(next < spellPanels.Length)
+        {
+            ShowPanel(next);
+        }
+    }
+
+    public void ResetUI()
+    {
+        HideAllPanels();
+        currentPanel = 0;
     }
 
     // Update is called once per frame
@@ -40,15 +74,18 @@ public class SpellUIManager : MonoBehaviour
 
     private void UIToggle()
     {
-        isOpen = !isOpen;
-        spellPanel.SetActive(isOpen);
-
-        Time.timeScale = isOpen ? 0f : 1f; // pause/unpause game
+        if (!isOpen)
+        {
+            isOpen = true;
+            ShowPanel(0);
+            Time.timeScale = isOpen ? 0f : 1f; // pause/unpause game
+        }
+        else
+        {
+            isOpen = false;
+            ResetUI();
+            Time.timeScale = isOpen ? 0f : 1f; // pause/unpause game
+        }
     }
 
-    public void CloseUI()
-    {
-        isOpen = false;
-        spellPanel.SetActive(false);
-    }
 }

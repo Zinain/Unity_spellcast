@@ -4,11 +4,12 @@ using System.Collections.Generic;
 public class SpellCast : MonoBehaviour
 {
     private List<PrayerBlock> blocks = new List<PrayerBlock>();
-
+    public SpellUIManager uimanager;
     public void AddBlock(PrayerBlock block)
     {
         blocks.Add(block);
         Debug.Log("Added block" + block.blockName);
+        uimanager.NextPanel();
     }
 
     public void CastSpell()
@@ -54,6 +55,7 @@ public class SpellCast : MonoBehaviour
         }
 
         blocks.Clear();
+        uimanager.HideAllPanels();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
