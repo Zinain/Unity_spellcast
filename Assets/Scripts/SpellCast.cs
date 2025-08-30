@@ -4,11 +4,11 @@ using System.Collections.Generic;
 public class SpellCast : MonoBehaviour
 {
     private List<PrayerBlock> blocks = new List<PrayerBlock>();
-    public SpellUIManager uimanager;
+    [SerializeField] private SpellUIManager uimanager;
     public void AddBlock(PrayerBlock block)
     {
         blocks.Add(block);
-        Debug.Log("Added block" + block.blockName);
+        Debug.Log("Added block " + block.blockName);
         uimanager.NextPanel();
     }
 

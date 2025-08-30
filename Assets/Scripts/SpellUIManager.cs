@@ -41,16 +41,13 @@ public class SpellUIManager : MonoBehaviour
     public void ShowPanel(int index)
     {
         HideAllPanels();
-        if(index >= 0 && index < spellPanels.Length)
-        {
-            spellPanels[index].SetActive(true);
-            currentPanel = index;
-        }
+        spellPanels[index].SetActive(true);
+        currentPanel = index;
     }
 
     public void NextPanel()
     {
-        int next = currentPanel++;
+        int next = currentPanel+1;
         if(next < spellPanels.Length)
         {
             ShowPanel(next);

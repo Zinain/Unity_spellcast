@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e776e527addf22945a01ce1468afa71a, type: 3}
   m_Name: moraleBuff
   m_EditorClassIdentifier: Assembly-CSharp::PrayerBlock
-  blockName: Heavenly Father
+  blockName: Enlight the spirit
   effect: 6
   power: 5
   radius: 5
